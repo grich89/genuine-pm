@@ -1,0 +1,90 @@
+header {
+  align-items: center;
+  background-color: black;
+  color: white;
+  overflow: auto;
+  display: flex;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+nav ul {
+  margin: 0;
+  padding: 1em 0 1em 1em;
+}
+
+nav li {
+  display: inline-block;
+  list-style: none;
+  margin-right: 1em;
+}
+
+.user {
+  margin-left: auto;
+  margin-right: 1em;
+  font-weight: 600;
+}
+
+.container {
+  padding: 1em;
+}
+
+.projects .headings,
+.tickets .headings,
+.projects .project,
+.tickets .ticket {
+  display: flex;
+}
+
+.project,
+.ticket {
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+
+.project div,
+.ticket div,
+.headings div {
+  flex: 1;
+  padding: .5em;
+}
+
+.headings {
+  background: #000;
+  color: #fff;
+  font-weight: 600;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (min-width: 1030px) {
+  header {
+    padding: 1em;
+  }
+  .container {
+    padding: 2em;
+  }
+  .dashboard {
+    display: grid;
+    grid-gap: 2em;
+    grid-template-columns: 1fr 1fr;
+  }
+  .project div,
+  .ticket div,
+  .headings div {
+    padding: 1em;
+  }
+}
