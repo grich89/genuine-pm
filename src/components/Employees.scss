@@ -1,0 +1,23 @@
+.employee-grid {
+  display: grid;
+  grid-gap: 1em;
+  margin: 0;
+  padding: 0;
+  li {
+    list-style: none;
+    padding: 1em;
+    background-color: #eee;
+    .employee-header {
+      align-items: flex-start;
+      background-color: transparent;
+      display: flex;
+      margin-bottom: 1em;
+      h2 {
+        margin-top: 0;
+      }
+      .employee-stuff {
+        margin-left: 1em;
+      }
+    }
+  }
+}

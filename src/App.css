@@ -1,111 +1,22 @@
-header {
-  align-items: center;
-  background-color: black;
-  color: white;
-  overflow: auto;
-  display: flex; }
+.App {
+  text-align: center;
+}
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px; }
+  height: 40vmin;
+}
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white; }
-
-nav ul {
-  margin: 0;
-  padding: 1em 0 1em 1em; }
-
-nav li {
-  display: inline-block;
-  list-style: none;
-  margin-right: 1em; }
-
-nav li a {
-  color: #fff; }
-
-nav li a:hover {
-  color: yellow; }
-
-.user {
-  margin-left: auto;
-  margin-right: 1em;
-  font-weight: 600; }
-
-.container {
-  padding: 1em; }
-
-.projects .headings,
-.tickets .headings,
-.projects .project,
-.tickets .ticket {
-  display: flex; }
-
-.project,
-.ticket {
-  border-left: 1px solid #000;
-  border-right: 1px solid #000;
-  border-bottom: 1px solid #000; }
-
-.project div,
-.ticket div,
-.headings div {
-  flex: 1;
-  padding: .5em; }
-
-.headings {
-  background: #000;
-  color: #fff;
-  font-weight: 600; }
-
-.employee-grid {
-  display: grid;
-  grid-gap: 1em;
-  margin: 0;
-  padding: 0; }
-
-.employee-grid li {
-  list-style: none;
-  padding: 1em;
-  background-color: #eee; }
-
-.employee-grid li .employee-header {
-  align-items: flex-start;
-  background-color: transparent;
+  background-color: #282c34;
+  min-height: 100vh;
   display: flex;
-  margin-bottom: 1em; }
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
 
-.employee-grid li .employee-header h2 {
-  margin-top: 0; }
-
-.employee-grid li .employee-header .employee-stuff {
-  margin-left: 1em; }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg); }
-  to {
-    transform: rotate(360deg); } }
-
-@media (min-width: 768px) {
-  .employee-grid {
-    grid-template-columns: 1fr 1fr; } }
-
-@media (min-width: 1030px) {
-  header {
-    padding: 1em; }
-  .container {
-    padding: 2em; }
-  .dashboard {
-    display: grid;
-    grid-gap: 2em;
-    grid-template-columns: 1fr 1fr; }
-  .project div,
-  .ticket div,
-  .headings div {
-    padding: 1em; }
-  .employee-grid {
-    grid-template-columns: 1fr 1fr 1fr; } }
+.App-link {
+  color: #09d3ac;
+}
