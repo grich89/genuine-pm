@@ -37,10 +37,11 @@
   background: #fff;
   border: 5px solid black;
   height: 500px;
-  left: 0;
+  left: 50%;
+  margin-top: -250px;
+  margin-left: -275px;
   position: fixed;
-  top: 0;
-  transform: translate(50%, 25%);
+  top: 50%;
   width: 500px;
   padding: 1em;
   .close {
