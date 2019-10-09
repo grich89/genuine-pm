@@ -1,0 +1,5 @@
+version: "2.1"
+services:
+  cli:
+    ports:
+      - 3000:3000
