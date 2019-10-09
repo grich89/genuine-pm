@@ -1,99 +1,52 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 class Employees extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            title: "Employees",
-            user: {
-            name: "Greg Rich",
-            role: "Front End Developer",
-            projects: [
-                {
-                "id": 1,
-                client: "Edelman Intelligence",
-                producer: "Nikki Heffernan",
-                description: "Move site from Wordpress to SiteFactory.",
-                status: "development"
-                },
-                {
-                "id": 2,
-                client: "Sandoz",
-                producer: "Maggie",
-                description: "New website for two prescription opiate addiction applications.",
-                status: "live"
-                }
-            ],
-            tickets: [
-                {
-                client: "BIDMC",
-                producer: "Tonada",
-                description: "Move logo.",
-                status: "Not Started"
-                },
-                {
-                client: "BIDMC",
-                producer: "Tonada",
-                description: "Build page.",
-                status: "Not Started"
-                },
-                {
-                client: "Sandoz",
-                producer: "Maggie",
-                description: "Troubleshoot form.",
-                status: "Not Started"
-                },
-                {
-                client: "Sandoz",
-                producer: "Tonada",
-                description: "Create new section.",
-                status: "Not Started"
-                }
-            ]
-            }
+            employees: []
         }
     }
+    componentDidMount() {
+        axios({
+            method: 'get',
+            url: 'https://hackathon20191007122027.azurewebsites.net/api/data/allusers',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then((response) => {
+            console.log(response)
+            this.setState({
+                employees: response.data
+            });
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
     render() {
-    return (
-        <div className="container">
-            <h1>{this.state.title}</h1>
-            <div className="dashboard">
-                <div className="projects">
-                <h2>Projects</h2>
-                <div className="headings">
-                    <div className="heading">Client</div>
-                    <div className="heading">Producer</div>
-                    <div className="heading">Description of Work</div>
-                    <div className="heading">Status</div>
-                </div>
-                {this.state.user.projects.map((project) => (
-                    <div className="project">
-                    <div className="client">{project.client}</div>
-                    <div className="producer">{project.producer}</div>
-                    <div className="description">{project.description}</div>
-                    <div className="status">{project.status}</div>
-                    </div>
-                ))}
-                </div>
-                <div className="tickets">
-                <h2>Tickets</h2>
-                <div className="headings">
-                    <div className="heading">Client</div>
-                    <div className="heading">Producer</div>
-                    <div className="heading">Description of Work</div>
-                    <div className="heading">Status</div>
-                </div>
-                {this.state.user.tickets.map((ticket) => (
-                    <div className="ticket">
-                    <div className="client">{ticket.client}</div>
-                    <div className="producer">{ticket.producer}</div>
-                    <div className="description">{ticket.description}</div>
-                    <div className="status">{ticket.status}</div>
-                    </div>
-                ))}
-                </div>
+        return (
+            <div className="container">
+                <h1>Employees!</h1>
+                <ul className="employee-grid">
+                    { this.state.employees.map(employee =>
+                        <li key={employee.id}>
+                            <div className="employee-header">
+                                <img alt={employee.fullName} src={employee.photoPath} />
+                                <div className="employee-stuff">
+                                    <h2>{employee.fullName}</h2>
+                                    <h3>{employee.headline}</h3>
+                                </div>
+                            </div>
+                            {employee.emailAddress}
+                        </li>
+                    )}
+                </ul>
             </div>
-        </div>
-    );
+        );
     }
 }
 

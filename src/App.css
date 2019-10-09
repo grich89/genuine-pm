@@ -61,11 +61,38 @@ nav li a:hover {
   color: #fff;
   font-weight: 600; }
 
+.employee-grid {
+  display: grid;
+  grid-gap: 1em;
+  margin: 0;
+  padding: 0; }
+
+.employee-grid li {
+  list-style: none;
+  padding: 1em;
+  background-color: #eee; }
+
+.employee-grid li .employee-header {
+  align-items: flex-start;
+  background-color: transparent;
+  display: flex;
+  margin-bottom: 1em; }
+
+.employee-grid li .employee-header h2 {
+  margin-top: 0; }
+
+.employee-grid li .employee-header .employee-stuff {
+  margin-left: 1em; }
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg); }
   to {
     transform: rotate(360deg); } }
+
+@media (min-width: 768px) {
+  .employee-grid {
+    grid-template-columns: 1fr 1fr; } }
 
 @media (min-width: 1030px) {
   header {
@@ -79,4 +106,6 @@ nav li a:hover {
   .project div,
   .ticket div,
   .headings div {
-    padding: 1em; } }
+    padding: 1em; }
+  .employee-grid {
+    grid-template-columns: 1fr 1fr 1fr; } }

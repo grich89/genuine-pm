@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 class Projects extends Component {
-    state = {
-        todos: []
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            title: "Projects",
+            projects: []
+        }
     }
     componentDidMount() {
         axios({
@@ -13,24 +18,24 @@ class Projects extends Component {
                 'X-Requested-With': 'XMLHttpRequest'
             }
         })
-        .then(function (response) {
+        .then((response) => {
             console.log(response)
+            this.setState({
+                projects: response.data
+            });
         })
         .catch(function (error) {
             console.log(error);
-        })
-        .finally(function () {
-            console.log('something');
         });
-    }
-    constructor(props) {
-        super(props);
-        this.state = {}
     }
     render() {
         return (
             <div className="container">
-                <h1>Projects!</h1>
+                <h1>Projects</h1>
+                <ul>
+                    { this.state.projects.map(project => <li>{project.name}</li>)}
+                </ul>
+                {JSON.stringify(this.state.projects)}
             </div>
         );
     }

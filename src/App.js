@@ -5,7 +5,7 @@ import './App.css';
 import Dashboard from './components/Dashboard';
 import Projects from './components/Projects';
 import Tasks from './components/Tasks';
-
+import Employees from './components/Employees';
 
 class App extends Component {
   constructor(props) {
@@ -24,6 +24,10 @@ class App extends Component {
         {
           name: "Tasks",
           path: "/tasks"
+        },
+        {
+          name: "Employees",
+          path: "/employees"
         }
       ],
       user: {
@@ -53,6 +57,7 @@ class App extends Component {
               <Route path="/" component={Dashboard} exact/>
               <Route path="/projects" component={Projects}/>
               <Route path="/tasks" component={Tasks}/>
+              <Route path="/employees" component={Employees}/>
               <Route component={Error}/>
             </Switch>
         </BrowserRouter>
