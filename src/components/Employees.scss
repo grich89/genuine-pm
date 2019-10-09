@@ -19,5 +19,52 @@
         margin-left: 1em;
       }
     }
+    .employee-footer {
+      align-items: center;
+      display: flex;
+      button.openProfile {
+        margin-left: auto;
+        color: white;
+        background-color: red;
+        border: 0;
+        padding: .5em 1em;
+        font-size: 0.8em;
+      }
+    }
+  }
+}
+.profile {
+  background: #fff;
+  border: 5px solid black;
+  height: 500px;
+  left: 0;
+  position: fixed;
+  top: 0;
+  transform: translate(50%, 25%);
+  width: 500px;
+  padding: 1em;
+  .close {
+    border: 0px;
+    background-color: #000;
+    border-radius: 0px;
+    color: #fff;
+    padding: .5em .55em .75em .75em;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+@media (min-width: 1030px) {
+  .employee-grid {
+    grid-gap: 2em;
+    grid-template-columns: 1fr 1fr 1fr;
+    li {
+      display: flex;
+      flex-direction: column;
+      .employee-footer {
+        margin-top: auto;
+      }
+    }
   }
 }
