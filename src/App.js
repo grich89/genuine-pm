@@ -35,7 +35,6 @@ class App extends Component {
     return (
       <div className="App">
         <BrowserRouter>
-          <div>
             <header className="header">
               <nav className="nav">
                 <ul>
@@ -56,7 +55,6 @@ class App extends Component {
               <Route path="/tasks" component={Tasks}/>
               <Route component={Error}/>
             </Switch>
-          </div>
         </BrowserRouter>
       </div>
     );

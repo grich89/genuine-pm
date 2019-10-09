@@ -284,7 +284,7 @@ function runDevServer(host, port, protocol) {
 
 function run(port) {
   var protocol = process.env.HTTPS === 'true' ? "https" : "http";
-  var host = process.env.HOST || 'localhost';
+  var host = process.env.HOST || 'hackgenuine.docksal';
   setupCompiler(host, port, protocol);
   runDevServer(host, port, protocol);
 }
