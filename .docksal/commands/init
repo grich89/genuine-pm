@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+## Initial setup for Docksal development environment
+
+green='\033[0;32m'
+yellow='\033[1;33m'
+NC='\033[0m'
+
+
+#-------- Runtime ----------
+fin up
+
+# Reset containers
+while getopts ":r" flag; do
+  case $flag in
+    r)
+      echo -e "\n${yellow}Resetting containers${NC}"
+      fin project reset --force
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      ;;
+    *)
+      echo -e "\n${yellow}Project Start${NC}"
+      fin up
+  esac
+done
+
+# Update Node to LTS, and use it
+if [ "$NODE_VERSION" ]; then
+  echo -e "\n${yellow}Updating built-in Node to ${NODE_VERSION}${NC}"
+  fin exec "nvm install ${NODE_VERSION} && nvm alias default node"
+else
+  echo -e "\n${yellow}Updating built-in Node to LTS${NC}"
+  fin exec "nvm install --lts && nvm alias default node"
+fi
+
+# Install Node packages
+echo -e "\n${yellow}Installing project Node dependencies${NC}"
+cd "$PROJECT_ROOT"
+if [ -d "package-lock.json" ]; then
+  fin exec npm ci || exit 1
+else
+  fin exec npm i || exit 1
+fi
+
+# Initial Build
+echo -e "\n${yellow}Initial Build${NC}"
+cd "$PROJECT_ROOT"
+fin npm run build || exit 1
+
+echo -en "\n${green} DONE! ${NC}\n"
+echo -e "Open ${yellow}http://${VIRTUAL_HOST}${NC} in your browser to verify the setup."
