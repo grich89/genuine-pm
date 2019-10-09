@@ -4,7 +4,7 @@ import './App.scss';
 
 import Dashboard from './components/Dashboard';
 import Projects from './components/Projects';
-import Tasks from './components/Tasks';
+// import Tasks from './components/Tasks';
 import Employees from './components/Employees';
 
 class App extends Component {
@@ -21,10 +21,10 @@ class App extends Component {
           name: "Projects",
           path: "/projects"
         },
-        {
-          name: "Tasks",
-          path: "/tasks"
-        },
+        // {
+        //   name: "Tasks",
+        //   path: "/tasks"
+        // },
         {
           name: "Employees",
           path: "/employees"
@@ -43,7 +43,7 @@ class App extends Component {
               <nav className="nav">
                 <ul>
                 {this.state.nav.map((item) => (
-                  <li>
+                  <li key={"nav_" + item.name}>
                     <NavLink to={item.path}>{item.name}</NavLink>
                   </li>
                 ))}
@@ -56,7 +56,9 @@ class App extends Component {
             <Switch>
               <Route path="/" component={Dashboard} exact/>
               <Route path="/projects" component={Projects}/>
-              <Route path="/tasks" component={Tasks}/>
+              {/*
+                <Route path="/tasks" component={Tasks}/>
+              */}
               <Route path="/employees" component={Employees}/>
               <Route component={Error}/>
             </Switch>

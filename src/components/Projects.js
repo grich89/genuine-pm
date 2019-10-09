@@ -18,12 +18,8 @@ class Projects extends Component {
       }
     })
       .then((res) => {
-        // console.log(res.data)
-
         const projects = res.data;
         this.setState({ projects });
-        console.log(this.state)
-
       })
 
       .finally( () => {
@@ -36,11 +32,29 @@ class Projects extends Component {
         <h1>Projects!</h1>
 
         { this.state.projects.map(project =>
-          <details>
+          <details key={"project_" + project.jiraProjectId} id={"project_" + project.jiraProjectId}>
             <summary>
             {project.jiraData.name}
             </summary>
-            more things
+
+            <p>
+              Project users:
+            </p>
+            <ul>
+              { project.participatingUsers.map(user => <li key={"user_" + user.id}>{user.fullName}</li>)}
+            </ul>
+
+            <p>
+              Useful Links:
+            </p>
+            <ul>
+              <li>
+                JIRA: <a href={"https://genuine.atlassian.net/projects/"+project.jiraData.key} target="_blank" rel="noopener noreferrer ">{"https://genuine.atlassian.net/projects/"+project.jiraData.key}</a>
+              </li>
+              <li>
+                MavenLink Project: <a href={project.timesheetLink} target="_blank" rel="noopener noreferrer ">{project.timesheetLink}</a>
+              </li>
+            </ul>
           </details>
         )}
 
