@@ -5,8 +5,12 @@ class Employees extends Component {
         super(props);
 
         this.state = {
-            employees: []
+            employees: [],
+            employeeData: [],
+            profileOpened: false
         }
+
+        this.openProfile = this.openProfile.bind(this);
     }
     componentDidMount() {
         axios({
@@ -27,6 +31,16 @@ class Employees extends Component {
             console.log(error);
         });
     }
+    openProfile(id) {
+        console.log(id);
+        axios.get(`https://hackathon20191007122027.azurewebsites.net/api/data/projectsforuser/${id}`).then((response) => {
+            console.log(response);
+            this.setState({
+                profileOpened: true,
+                employeeData: response.data
+            })
+        })
+    }
     render() {
         return (
             <div className="container">
@@ -42,6 +56,19 @@ class Employees extends Component {
                                 </div>
                             </div>
                             {employee.emailAddress}
+                            <button onClick={() => this.openProfile(employee.id)}>Open Profile</button>
+
+                            {this.state.profileOpened ?
+                                <div className="profile">
+                                    {this.state.employeeData.projectData ?
+                                        this.state.employeeData.projectData.map(project =>
+                                            <div class="profile-details" key={project.id}>
+                                                <p>Name: {project.key}.</p>
+                                            </div>
+                                        )
+                                    : <p>No data.</p>}
+                                </div>
+                            : null}
                         </li>
                     )}
                 </ul>
