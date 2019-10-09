@@ -11,6 +11,7 @@ class Employees extends Component {
             employeeData: [],
             projectData: [],
             profileOpened: false,
+            projectExpanded: false
         }
 
         this.openProfile = this.openProfile.bind(this);
@@ -46,13 +47,14 @@ class Employees extends Component {
     }
     closeProfile() {
         this.setState({
-            profileOpened: false
+            profileOpened: false,
+            projectExpanded: false
         })
     }
     expandProject(id) {
         axios({
             method: "get",
-            url: `https://cors-anywhere.herokuapp.com/https://genuine.atlassian.net/rest/api/2/project/${id}`,
+            url: `https://hackathon20191007122027.azurewebsites.net/api/data/usersforproject/${id}`,
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'X-Requested-With': 'XMLHttpRequest'
@@ -60,6 +62,7 @@ class Employees extends Component {
         }).then((response) => {
             console.log(response);
             this.setState({
+                projectExpanded: true,
                 projectData: response.data
             })
         })
@@ -78,6 +81,11 @@ class Employees extends Component {
                                         <button onClick={() => this.expandProject(project.id)} rel="noopener noreferrer" target="_blank">
                                            {project.name}
                                         </button>
+                                        {this.state.projectExpanded ?
+                                            this.state.projectData.users.map(user =>
+                                                <span>{user.fullName}</span>
+                                            )
+                                        : null}
                                     </p>
                                 </div>
                             )
