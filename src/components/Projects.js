@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
 class Projects extends Component {
     state = {
         todos: []
     }
     componentDidMount() {
-        fetch('https://hackathon20191007122027.azurewebsites.net/api/data/alljiraprojects')
-        .then(res => res.text())
-        .then((data) => {
-          this.setState({ todos: data })
-          console.log(this.state.todos)
+        axios({
+            method: 'get',
+            url: 'https://hackathon20191007122027.azurewebsites.net/api/data/alljiraprojects',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'X-Requested-With': 'XMLHttpRequest'
+            }
         })
-        .catch(console.log)
+        .then(function (response) {
+            console.log(response)
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+        .finally(function () {
+            console.log('something');
+        });
     }
     constructor(props) {
         super(props);
